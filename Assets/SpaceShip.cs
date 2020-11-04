@@ -6,8 +6,9 @@ public class SpaceShip : MonoBehaviour
 {
 
     Rigidbody2D rb;
-    public float speed = 5;
+    public float speed = 0.0001f;
     public float health = 1;
+    public float maxSpeed = 0.0002f;
 
     void Awake()
     {
@@ -16,14 +17,27 @@ public class SpaceShip : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * speed, 0));
-        rb.AddForce(new Vector2(0, Input.GetAxis("Vertical") * speed));
+
+        //sets speed of ship by applying forces
+        rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * 50, 0));
+        rb.AddForce(new Vector2(0, Input.GetAxis("Vertical") * 50));
+
+        //clamp speed to maxspeed to not get crazy results :p
+        rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
+        //rb.transform.position += Vector3.ClampMagnitude(Input.GetAxis("Horizontal") * rb.transform.right * speed, maxSpeed);
+        //rb.transform.position += Vector3.ClampMagnitude(Input.GetAxis("Vertical") * rb.transform.up * speed, maxSpeed);
+
+        //Make sure the ship does not go out of bounds
+        Vector3 pos = Camera.main.WorldToViewportPoint(rb.transform.position);
+        pos.x = Mathf.Clamp01(pos.x);
+        pos.y = Mathf.Clamp01(pos.y);
+        rb.transform.position = Camera.main.ViewportToWorldPoint(pos);
     }
 
     public void Damage()

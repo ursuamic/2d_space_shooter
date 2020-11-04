@@ -35,6 +35,9 @@ public class fastship : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             col.gameObject.GetComponent<SpaceShip>().Damage();
+            //add a force from the collision
+            //TODO make sure the angle of collision matters
+            col.otherRigidbody.AddForceAtPosition(rb.velocity * rb.mass, new Vector2(col.GetContact(0).point.x, col.GetContact(0).point.y));
             Die();
         }
 

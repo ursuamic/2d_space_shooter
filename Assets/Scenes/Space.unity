@@ -10182,6 +10182,14 @@ PrefabInstance:
       propertyPath: health
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4442088307817120896, guid: 6430a2fd5b661114cae71ec06af9581d, type: 3}
+      propertyPath: maxSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442088307817120897, guid: 6430a2fd5b661114cae71ec06af9581d, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4442088307817120957, guid: 6430a2fd5b661114cae71ec06af9581d, type: 3}
       propertyPath: m_Name
       value: ship
