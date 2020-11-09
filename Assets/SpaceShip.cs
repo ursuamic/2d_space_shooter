@@ -25,13 +25,13 @@ public class SpaceShip : MonoBehaviour
     {
 
         //sets speed of ship by applying forces
-        rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * 50, 0));
-        rb.AddForce(new Vector2(0, Input.GetAxis("Vertical") * 50));
+        //rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * 50, 0));
+        //rb.AddForce(new Vector2(0, Input.GetAxis("Vertical") * 50));
 
         //clamp speed to maxspeed to not get crazy results :p
-        rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
-        //rb.transform.position += Vector3.ClampMagnitude(Input.GetAxis("Horizontal") * rb.transform.right * speed, maxSpeed);
-        //rb.transform.position += Vector3.ClampMagnitude(Input.GetAxis("Vertical") * rb.transform.up * speed, maxSpeed);
+        //rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
+        rb.transform.position += Vector3.ClampMagnitude(Input.GetAxis("Horizontal") * rb.transform.right * speed, maxSpeed);
+        rb.transform.position += Vector3.ClampMagnitude(Input.GetAxis("Vertical") * rb.transform.up * speed, maxSpeed);
 
         //Make sure the ship does not go out of bounds
         Vector3 pos = Camera.main.WorldToViewportPoint(rb.transform.position);
